@@ -75,17 +75,10 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void ReadConfig()
         {
-            try
-            {
-                var xml = ConfigParser.ReadXml("Config.xml");
-                config = ConfigParser.Parse(xml);
+            var xml = ConfigParser.ReadXml("Config.xml");
+            config = ConfigParser.Parse(xml);
 
-                AddLog("Настройки загружены.");
-            }
-            catch (Exception ex)
-            {
-                AddLog(ex);
-            }
+            AddLog("Настройки загружены.");
         }
 
         private async Task UpdateReminderContainer()
@@ -142,15 +135,22 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void ConfigureReminder()
         {
-            ReadConfig();
+            try
+            {
+                ReadConfig();
 
-            UpdateReminderContainer();
+                UpdateReminderContainer();
 
-            calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
-            calendarUpdateTimer.Start();
+                calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+                calendarUpdateTimer.Start();
 
-            reminderTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
-            reminderTimer.Start();
+                reminderTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+                reminderTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
         }
 
         private void UpdateEventList(Day day)
