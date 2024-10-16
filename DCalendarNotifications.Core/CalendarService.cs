@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DCalendarNotifications.Core.CalendarData;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -8,12 +9,11 @@ namespace DCalendarNotifications.Core
 {
     public static class CalendarService
     {
-        #region Public
-
         public static async Task<Day> LoadDayByICalUriAsync(DateTime date, Uri uri)
         {
             using var httpClient = new HttpClient();
             using var response = await httpClient.GetAsync(uri);
+
             var responseString = await response.Content.ReadAsStringAsync();
 
             return LoadDayByICal(date, responseString);
@@ -25,10 +25,6 @@ namespace DCalendarNotifications.Core
             return LoadDayByICal(date, iCalString);
         }
 
-        #endregion
-
-        #region Helpers
-
         private static Day LoadDayByICal(DateTime date, string iCalString)
         {
             var calendar = Ical.Net.Calendar.Load(iCalString);
@@ -36,7 +32,10 @@ namespace DCalendarNotifications.Core
 
             var day = new Day();
 
-            if (currentOccurrences == null) return day;
+            if (currentOccurrences == null)
+            {
+                return day;
+            }
 
             foreach (var occurrence in currentOccurrences)
             {
@@ -59,7 +58,5 @@ namespace DCalendarNotifications.Core
 
             return day;
         }
-
-        #endregion
     }
 }

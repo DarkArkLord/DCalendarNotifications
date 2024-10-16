@@ -1,10 +1,12 @@
 using DCalendarNotifications.Core;
+using DCalendarNotifications.Core.CalendarData;
+using DCalendarNotifications.Core.ReminderData;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Day = DCalendarNotifications.Core.Day;
+using Day = DCalendarNotifications.Core.CalendarData.Day;
 
 namespace DCalendarNotifications.Desctop.WF
 {

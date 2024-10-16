@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DCalendarNotifications.Core
+namespace DCalendarNotifications.Core.CalendarData
 {
     public class CalendarEvent
     {
@@ -23,9 +23,6 @@ namespace DCalendarNotifications.Core
 
         public Uri Url { get; init; }
 
-        public override string ToString()
-        {
-            return $"{Start:HH:mm}-{End:HH:mm} - {Title}";
-        }
+        public override string ToString() => $"{Start:HH:mm}-{End:HH:mm} - {Title}";
     }
 }

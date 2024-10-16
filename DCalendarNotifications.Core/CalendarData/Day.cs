@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DCalendarNotifications.Core
+namespace DCalendarNotifications.Core.CalendarData
 {
     public class Day
     {

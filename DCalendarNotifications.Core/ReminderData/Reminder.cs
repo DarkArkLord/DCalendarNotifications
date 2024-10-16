@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DCalendarNotifications.Core.CalendarData;
+using System;
 
-namespace DCalendarNotifications.Core
+namespace DCalendarNotifications.Core.ReminderData
 {
     public class Reminder
     {

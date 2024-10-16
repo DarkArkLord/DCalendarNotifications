@@ -1,4 +1,4 @@
-﻿using DCalendarNotifications.Core;
+﻿using DCalendarNotifications.Core.CalendarData;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;

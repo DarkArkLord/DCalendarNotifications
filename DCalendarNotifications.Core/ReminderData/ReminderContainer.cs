@@ -1,8 +1,9 @@
-﻿using System;
+﻿using DCalendarNotifications.Core.CalendarData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DCalendarNotifications.Core
+namespace DCalendarNotifications.Core.ReminderData
 {
     public class ReminderContainer
     {
@@ -87,7 +88,7 @@ namespace DCalendarNotifications.Core
         {
             var result = new List<Reminder>();
 
-            foreach (var reminder in _reminders.Where(reminder => (reminder.Start <= dateTime && dateTime <= reminder.End) && !reminder.Called))
+            foreach (var reminder in _reminders.Where(reminder => reminder.Start <= dateTime && dateTime <= reminder.End && !reminder.Called))
             {
                 reminder.Called = true;
                 result.Add(reminder);
