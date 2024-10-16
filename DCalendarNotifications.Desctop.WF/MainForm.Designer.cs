@@ -36,7 +36,9 @@
             gbEvents = new System.Windows.Forms.GroupBox();
             lbEvents = new System.Windows.Forms.ListBox();
             gbLog = new System.Windows.Forms.GroupBox();
-            lbLog = new System.Windows.Forms.ListBox();
+            tbLog = new System.Windows.Forms.TextBox();
+            calendarUpdateTimer = new System.Windows.Forms.Timer(components);
+            reminderTimer = new System.Windows.Forms.Timer(components);
             trayIconMenuStrip.SuspendLayout();
             gbEvents.SuspendLayout();
             gbLog.SuspendLayout();
@@ -69,8 +71,8 @@
             gbEvents.Dock = System.Windows.Forms.DockStyle.Top;
             gbEvents.Location = new System.Drawing.Point(0, 0);
             gbEvents.Name = "gbEvents";
-            gbEvents.Size = new System.Drawing.Size(480, 202);
-            gbEvents.TabIndex = 1;
+            gbEvents.Size = new System.Drawing.Size(480, 207);
+            gbEvents.TabIndex = 2;
             gbEvents.TabStop = false;
             gbEvents.Text = "События";
             // 
@@ -81,30 +83,39 @@
             lbEvents.ItemHeight = 15;
             lbEvents.Location = new System.Drawing.Point(3, 19);
             lbEvents.Name = "lbEvents";
-            lbEvents.Size = new System.Drawing.Size(474, 180);
+            lbEvents.Size = new System.Drawing.Size(474, 185);
             lbEvents.TabIndex = 0;
             lbEvents.MouseDoubleClick += lbEvents_MouseDoubleClick;
             // 
             // gbLog
             // 
-            gbLog.Controls.Add(lbLog);
+            gbLog.Controls.Add(tbLog);
             gbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            gbLog.Location = new System.Drawing.Point(0, 202);
+            gbLog.Location = new System.Drawing.Point(0, 207);
             gbLog.Name = "gbLog";
-            gbLog.Size = new System.Drawing.Size(480, 155);
-            gbLog.TabIndex = 2;
+            gbLog.Size = new System.Drawing.Size(480, 150);
+            gbLog.TabIndex = 3;
             gbLog.TabStop = false;
             gbLog.Text = "Журнал";
             // 
-            // lbLog
+            // tbLog
             // 
-            lbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbLog.FormattingEnabled = true;
-            lbLog.ItemHeight = 15;
-            lbLog.Location = new System.Drawing.Point(3, 19);
-            lbLog.Name = "lbLog";
-            lbLog.Size = new System.Drawing.Size(474, 133);
-            lbLog.TabIndex = 1;
+            tbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbLog.Location = new System.Drawing.Point(3, 19);
+            tbLog.Multiline = true;
+            tbLog.Name = "tbLog";
+            tbLog.ReadOnly = true;
+            tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            tbLog.Size = new System.Drawing.Size(474, 128);
+            tbLog.TabIndex = 0;
+            // 
+            // calendarUpdateTimer
+            // 
+            calendarUpdateTimer.Tick += calendarUpdateTimer_Tick;
+            // 
+            // reminderTimer
+            // 
+            reminderTimer.Tick += reminderTimer_Tick;
             // 
             // MainForm
             // 
@@ -125,6 +136,7 @@
             trayIconMenuStrip.ResumeLayout(false);
             gbEvents.ResumeLayout(false);
             gbLog.ResumeLayout(false);
+            gbLog.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -136,6 +148,8 @@
         private System.Windows.Forms.GroupBox gbEvents;
         private System.Windows.Forms.GroupBox gbLog;
         private System.Windows.Forms.ListBox lbEvents;
-        private System.Windows.Forms.ListBox lbLog;
+        private System.Windows.Forms.Timer calendarUpdateTimer;
+        private System.Windows.Forms.Timer reminderTimer;
+        private System.Windows.Forms.TextBox tbLog;
     }
 }
