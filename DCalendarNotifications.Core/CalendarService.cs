@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace DCalendarNotifications.Core
 {
-    public class CalendarService
+    public static class CalendarService
     {
         #region Public
 
-        public async Task<Day> LoadDayByICalUriAsync(DateTime date, Uri uri)
+        public static async Task<Day> LoadDayByICalUriAsync(DateTime date, Uri uri)
         {
             using var httpClient = new HttpClient();
             using var response = await httpClient.GetAsync(uri);
             var responseString = await response.Content.ReadAsStringAsync();
 
-            return LoadDayByICalAsync(date, responseString);
+            return LoadDayByICal(date, responseString);
         }
 
-        public async Task<Day> LoadDayByICalFileAsync(DateTime date, string icsFilePath)
+        public static async Task<Day> LoadDayByICalFileAsync(DateTime date, string icsFilePath)
         {
             var iCalString = await File.ReadAllTextAsync(icsFilePath);
-            return LoadDayByICalAsync(date, iCalString);
+            return LoadDayByICal(date, iCalString);
         }
 
         #endregion
 
         #region Helpers
 
-        private Day LoadDayByICalAsync(DateTime date, string iCalString)
+        private static Day LoadDayByICal(DateTime date, string iCalString)
         {
             var calendar = Ical.Net.Calendar.Load(iCalString);
             var currentOccurrences = calendar.GetOccurrences(date);
