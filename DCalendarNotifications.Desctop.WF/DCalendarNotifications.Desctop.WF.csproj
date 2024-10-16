@@ -8,4 +8,12 @@
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="calendar.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="calendar.ico" />
+  </ItemGroup>
+
 </Project>
