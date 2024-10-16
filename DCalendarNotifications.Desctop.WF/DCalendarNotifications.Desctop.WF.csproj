@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DCalendarNotifications.Core\DCalendarNotifications.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="calendar.ico" />
   </ItemGroup>
 
