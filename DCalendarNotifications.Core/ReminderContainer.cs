@@ -86,11 +86,13 @@ namespace DCalendarNotifications.Core
         public IEnumerable<Reminder> Call(DateTime dateTime)
         {
             var result = new List<Reminder>();
+
             foreach (var reminder in _reminders.Where(reminder => (reminder.Start <= dateTime && dateTime <= reminder.End) && !reminder.Called))
             {
                 reminder.Called = true;
                 result.Add(reminder);
             }
+
             return result;
         }
 

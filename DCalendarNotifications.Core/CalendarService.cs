@@ -35,7 +35,9 @@ namespace DCalendarNotifications.Core
             var currentOccurrences = calendar.GetOccurrences(date);
 
             var day = new Day();
+
             if (currentOccurrences == null) return day;
+
             foreach (var occurrence in currentOccurrences)
             {
                 if (occurrence.Source is Ical.Net.CalendarComponents.CalendarEvent calEvent)
@@ -51,7 +53,7 @@ namespace DCalendarNotifications.Core
                         Attendees = calEvent.Attendees.Select(a => a.Value),
                         Location = calEvent.Location,
                         Url = calEvent.Url
-                    }); ;
+                    });
                 }
             }
 
