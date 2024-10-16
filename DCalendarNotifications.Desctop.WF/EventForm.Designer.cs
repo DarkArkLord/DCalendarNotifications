@@ -30,6 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventForm));
             titleLinkLabel = new System.Windows.Forms.LinkLabel();
+            gbOrganizer = new System.Windows.Forms.GroupBox();
+            tbOrganizer = new System.Windows.Forms.TextBox();
+            gbAttendees = new System.Windows.Forms.GroupBox();
+            tbAttendees = new System.Windows.Forms.TextBox();
+            gbLocation = new System.Windows.Forms.GroupBox();
+            tbLocation = new System.Windows.Forms.TextBox();
+            rtbDescription = new System.Windows.Forms.RichTextBox();
+            gbOrganizer.SuspendLayout();
+            gbAttendees.SuspendLayout();
+            gbLocation.SuspendLayout();
             SuspendLayout();
             // 
             // titleLinkLabel
@@ -37,17 +47,95 @@
             titleLinkLabel.Dock = System.Windows.Forms.DockStyle.Top;
             titleLinkLabel.Location = new System.Drawing.Point(0, 0);
             titleLinkLabel.Name = "titleLinkLabel";
-            titleLinkLabel.Size = new System.Drawing.Size(584, 15);
+            titleLinkLabel.Size = new System.Drawing.Size(584, 20);
             titleLinkLabel.TabIndex = 0;
             titleLinkLabel.TabStop = true;
             titleLinkLabel.Text = "titleLinkLabel";
-            titleLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            titleLinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            titleLinkLabel.LinkClicked += titleLinkLabel_LinkClicked;
+            // 
+            // gbOrganizer
+            // 
+            gbOrganizer.Controls.Add(tbOrganizer);
+            gbOrganizer.Dock = System.Windows.Forms.DockStyle.Top;
+            gbOrganizer.Location = new System.Drawing.Point(0, 20);
+            gbOrganizer.Name = "gbOrganizer";
+            gbOrganizer.Size = new System.Drawing.Size(584, 50);
+            gbOrganizer.TabIndex = 1;
+            gbOrganizer.TabStop = false;
+            gbOrganizer.Text = "Организатор";
+            // 
+            // tbOrganizer
+            // 
+            tbOrganizer.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbOrganizer.Location = new System.Drawing.Point(3, 19);
+            tbOrganizer.Name = "tbOrganizer";
+            tbOrganizer.ReadOnly = true;
+            tbOrganizer.Size = new System.Drawing.Size(578, 23);
+            tbOrganizer.TabIndex = 0;
+            // 
+            // gbAttendees
+            // 
+            gbAttendees.Controls.Add(tbAttendees);
+            gbAttendees.Dock = System.Windows.Forms.DockStyle.Top;
+            gbAttendees.Location = new System.Drawing.Point(0, 70);
+            gbAttendees.Name = "gbAttendees";
+            gbAttendees.Size = new System.Drawing.Size(584, 100);
+            gbAttendees.TabIndex = 2;
+            gbAttendees.TabStop = false;
+            gbAttendees.Text = "Участники";
+            // 
+            // tbAttendees
+            // 
+            tbAttendees.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbAttendees.Location = new System.Drawing.Point(3, 19);
+            tbAttendees.Multiline = true;
+            tbAttendees.Name = "tbAttendees";
+            tbAttendees.ReadOnly = true;
+            tbAttendees.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            tbAttendees.Size = new System.Drawing.Size(578, 78);
+            tbAttendees.TabIndex = 0;
+            // 
+            // gbLocation
+            // 
+            gbLocation.Controls.Add(tbLocation);
+            gbLocation.Dock = System.Windows.Forms.DockStyle.Top;
+            gbLocation.Location = new System.Drawing.Point(0, 170);
+            gbLocation.Name = "gbLocation";
+            gbLocation.Size = new System.Drawing.Size(584, 50);
+            gbLocation.TabIndex = 3;
+            gbLocation.TabStop = false;
+            gbLocation.Text = "Расположение";
+            // 
+            // tbLocation
+            // 
+            tbLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbLocation.Location = new System.Drawing.Point(3, 19);
+            tbLocation.Name = "tbLocation";
+            tbLocation.ReadOnly = true;
+            tbLocation.Size = new System.Drawing.Size(578, 23);
+            tbLocation.TabIndex = 0;
+            // 
+            // rtbDescription
+            // 
+            rtbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            rtbDescription.Location = new System.Drawing.Point(0, 220);
+            rtbDescription.Name = "rtbDescription";
+            rtbDescription.ReadOnly = true;
+            rtbDescription.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            rtbDescription.Size = new System.Drawing.Size(584, 191);
+            rtbDescription.TabIndex = 4;
+            rtbDescription.Text = "";
             // 
             // EventForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(584, 411);
+            Controls.Add(rtbDescription);
+            Controls.Add(gbLocation);
+            Controls.Add(gbAttendees);
+            Controls.Add(gbOrganizer);
             Controls.Add(titleLinkLabel);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
@@ -55,11 +143,24 @@
             MinimizeBox = false;
             Name = "EventForm";
             Text = "EventForm";
+            gbOrganizer.ResumeLayout(false);
+            gbOrganizer.PerformLayout();
+            gbAttendees.ResumeLayout(false);
+            gbAttendees.PerformLayout();
+            gbLocation.ResumeLayout(false);
+            gbLocation.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private System.Windows.Forms.LinkLabel titleLinkLabel;
+        private System.Windows.Forms.GroupBox gbOrganizer;
+        private System.Windows.Forms.TextBox tbOrganizer;
+        private System.Windows.Forms.GroupBox gbAttendees;
+        private System.Windows.Forms.TextBox tbAttendees;
+        private System.Windows.Forms.GroupBox gbLocation;
+        private System.Windows.Forms.TextBox tbLocation;
+        private System.Windows.Forms.RichTextBox rtbDescription;
     }
 }

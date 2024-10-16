@@ -1,12 +1,7 @@
 ﻿using DCalendarNotifications.Core;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DCalendarNotifications.Desctop.WF
@@ -20,7 +15,24 @@ namespace DCalendarNotifications.Desctop.WF
             InitializeComponent();
 
             this.calEvent = calEvent;
-            //
+            UIUpdate();
+        }
+
+        private void UIUpdate()
+        {
+            titleLinkLabel.Text = $"{calEvent.Title} ({calEvent.Start:HH:mm}-{calEvent.End:HH:mm})";
+            tbOrganizer.Text = calEvent.Organizer?.UserInfo;
+            tbAttendees.Text = string.Join("; ", calEvent.Attendees.Select(a => a.UserInfo));
+            tbLocation.Text = calEvent.Location;
+            rtbDescription.Text = calEvent.Description;
+        }
+
+        private void titleLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(calEvent.Url.AbsoluteUri)
+            {
+                UseShellExecute = true,
+            });
         }
     }
 }
