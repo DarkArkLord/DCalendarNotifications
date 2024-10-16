@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Config>
-    <Hello>
-        Привет! Я готов к работе.
-    </Hello>
-
-    <Source>
-        Link
-    </Source>
+    <Source>Link</Source>
 
     <NotificationTimeOffsetsList>
         <TimeOffset hours="0" minutes="-15" seconds="0" />
         <TimeOffset hours="0" minutes="-5" seconds="0" />
         <TimeOffset hours="0" minutes="0" seconds="0" />
     </NotificationTimeOffsetsList>
+
+    <Timers>
+        <UpdateInterval>3600</UpdateInterval>
+        <ReminderInterval>60</ReminderInterval>
+    </Timers>
 </Config>
