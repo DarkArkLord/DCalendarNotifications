@@ -7,13 +7,7 @@ namespace DCalendarNotifications.Core.ReminderData
 {
     public class ReminderContainer
     {
-        #region Fields
-
         private IList<Reminder> _reminders = new List<Reminder>();
-
-        #endregion
-
-        #region Public
 
         public void Update(Day day, int[] times)
         {
@@ -96,12 +90,5 @@ namespace DCalendarNotifications.Core.ReminderData
 
             return result;
         }
-
-        #endregion
-
-        #region Helpers
-
-
-        #endregion
     }
 }
