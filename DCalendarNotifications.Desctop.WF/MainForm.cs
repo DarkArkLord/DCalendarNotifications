@@ -18,14 +18,7 @@ namespace DCalendarNotifications.Desctop.WF
         public MainForm()
         {
             InitializeComponent();
-
-            UpdateReminderContainer();
-
-            calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
-            calendarUpdateTimer.Start();
-
-            reminderTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
-            reminderTimer.Start();
+            ConfigureReminder();
         }
 
         #region For Closing
@@ -72,7 +65,7 @@ namespace DCalendarNotifications.Desctop.WF
             {
                 ShowEventInfo(calEvent);
             }
-        } 
+        }
 
         #endregion
 
@@ -128,7 +121,18 @@ namespace DCalendarNotifications.Desctop.WF
 
         #endregion
 
-        #region Common methods
+        #region Common Methods
+
+        private void ConfigureReminder()
+        {
+            UpdateReminderContainer();
+
+            calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+            calendarUpdateTimer.Start();
+
+            reminderTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+            reminderTimer.Start();
+        }
 
         private void UpdateEventList(Day day)
         {
@@ -158,7 +162,7 @@ namespace DCalendarNotifications.Desctop.WF
         {
             var message = $"{ex.Message} Stack Trace: {ex.StackTrace}";
             AddLog(message);
-        } 
+        }
 
         #endregion
     }
