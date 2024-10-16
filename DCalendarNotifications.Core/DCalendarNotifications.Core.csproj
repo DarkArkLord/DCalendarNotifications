@@ -10,4 +10,10 @@
     <PackageReference Include="Ical.Net" Version="4.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

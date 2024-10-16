@@ -1,5 +1,6 @@
 using DCalendarNotifications.Core;
 using DCalendarNotifications.Core.CalendarData;
+using DCalendarNotifications.Core.Config;
 using DCalendarNotifications.Core.ReminderData;
 using System;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DCalendarNotifications.Desctop.WF
 {
     public partial class MainForm : Form
     {
+        private ConfigData config;
         private ReminderContainer _reminderContainer = new ReminderContainer();
         private object _lock = new();
 
@@ -71,6 +73,21 @@ namespace DCalendarNotifications.Desctop.WF
 
         #region Events Methods
 
+        private void ReadConfig()
+        {
+            try
+            {
+                var xml = ConfigParser.ReadXml("Config.xml");
+                config = ConfigParser.Parse(xml);
+
+                AddLog("Настройки загружены.");
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
         private async Task UpdateReminderContainer()
         {
             try
@@ -125,6 +142,8 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void ConfigureReminder()
         {
+            ReadConfig();
+
             UpdateReminderContainer();
 
             calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
