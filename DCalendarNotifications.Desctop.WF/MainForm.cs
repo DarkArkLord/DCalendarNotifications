@@ -105,7 +105,7 @@ namespace DCalendarNotifications.Desctop.WF
                     }
 
                     UpdateEventList(day);
-                    AddLog("Events were updates successfully.");
+                    AddLog("События были успешно обновлены.");
                 }
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace DCalendarNotifications.Desctop.WF
 
                 if (reminders.Count() > 0)
                 {
-                    AddLog($"Reminders: {reminders.Count()}.");
+                    AddLog($"Напоминания: {reminders.Count()}.");
                 }
             }
             catch (Exception ex)
@@ -170,7 +170,7 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void AddLog(string message)
         {
-            var newLogText = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]: {message}";
+            var newLogText = $"[{DateTime.Now:dd.MM.yyyy HH:mm:ss}]: {message}";
             var logText = tbLog.Text.Length < 1
                 ? newLogText
                 : $"{newLogText}{Environment.NewLine}{tbLog.Text}";
