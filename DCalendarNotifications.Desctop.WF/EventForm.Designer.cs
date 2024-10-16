@@ -142,7 +142,9 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EventForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "EventForm";
+            TopMost = true;
             gbOrganizer.ResumeLayout(false);
             gbOrganizer.PerformLayout();
             gbAttendees.ResumeLayout(false);
