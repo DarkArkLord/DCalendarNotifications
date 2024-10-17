@@ -51,18 +51,19 @@ namespace DCalendarNotifications.Core.Config
                 throw new Exception($"Секция \"Source\" не обнаружена.");
             }
 
-            if (string.IsNullOrEmpty(sourceElement.Value))
+            var elementValue = sourceElement.Value?.Trim();
+            if (string.IsNullOrEmpty(elementValue))
             {
                 throw new Exception($"Секция \"Source\" не заполнена.");
             }
 
-            if (Uri.TryCreate(sourceElement.Value, UriKind.Absolute, out var createdUri))
+            if (Uri.TryCreate(elementValue, UriKind.Absolute, out var createdUri))
             {
                 config.Source = createdUri!;
             }
             else
             {
-                throw new Exception($"Значение \"Source\" не может быть преобразовано в ссылку ({sourceElement.Value}).");
+                throw new Exception($"Значение \"Source\" не может быть преобразовано в ссылку ({elementValue}).");
             }
         }
 
@@ -80,7 +81,7 @@ namespace DCalendarNotifications.Core.Config
 
         private static void SetUpdateIntervalValue(XElement timersNode, ConfigData config)
         {
-            var updateIntervalString = timersNode.Attribute("UpdateInterval")?.Value;
+            var updateIntervalString = timersNode.Attribute("UpdateInterval")?.Value?.Trim();
             if (string.IsNullOrEmpty(updateIntervalString))
             {
                 throw new Exception($"Атрибут \"UpdateInterval\" секции \"Timers\" не заполнена.");
@@ -98,7 +99,7 @@ namespace DCalendarNotifications.Core.Config
 
         private static void SetReminderIntervalValue(XElement timersNode, ConfigData config)
         {
-            var reminderIntervalString = timersNode.Attribute("ReminderInterval")?.Value;
+            var reminderIntervalString = timersNode.Attribute("ReminderInterval")?.Value?.Trim();
             if (string.IsNullOrEmpty(reminderIntervalString))
             {
                 throw new Exception($"Атрибут \"ReminderInterval\" секции \"Timers\" не заполнена.");
@@ -174,7 +175,7 @@ namespace DCalendarNotifications.Core.Config
 
         private static int GetNotificationOffsetAttribute(XElement offsetNode, string attrName)
         {
-            var attrValueString = offsetNode.Attribute(attrName)?.Value;
+            var attrValueString = offsetNode.Attribute(attrName)?.Value?.Trim();
             if (string.IsNullOrEmpty(attrValueString))
             {
                 throw new Exception($"Атрибут \"{attrName}\" объекта \"TimeOffset\" секции \"NotificationTimeOffsetsList\" не заполнен.");
