@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Config>
-    <Source>Link</Source>
+    <Source>https://www.Link.ru</Source>
+
+    <Timers UpdateInterval="3600" ReminderInterval="60" />
 
     <NotificationTimeOffsetsList>
-        <TimeOffset hours="0" minutes="-15" seconds="0" />
-        <TimeOffset hours="0" minutes="-5" seconds="0" />
-        <TimeOffset hours="0" minutes="0" seconds="0" />
+        <TimeOffset Hours="0" Minutes="-15" Seconds="0" />
+        <TimeOffset Hours="0" Minutes="-5" Seconds="0" />
+        <TimeOffset Hours="0" Minutes="0" Seconds="0" />
     </NotificationTimeOffsetsList>
-
-    <Timers>
-        <UpdateInterval>3600</UpdateInterval>
-        <ReminderInterval>60</ReminderInterval>
-    </Timers>
 </Config>
