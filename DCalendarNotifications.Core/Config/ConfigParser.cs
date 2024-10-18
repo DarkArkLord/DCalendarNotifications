@@ -10,7 +10,7 @@ namespace DCalendarNotifications.Core.Config
     {
         public static XDocument ReadXml(string path)
         {
-            var file = File.ReadAllText(path);
+            var file = File.ReadAllText(path).Replace("&", "&amp;");
             var xDocument = XDocument.Parse(file);
             return xDocument;
         }

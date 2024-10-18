@@ -85,7 +85,7 @@ namespace DCalendarNotifications.Desctop.WF
         {
             try
             {
-                var day = await CalendarService.LoadDayByICalUriAsync(DateTime.Today, new Uri("link"));
+                var day = await CalendarService.LoadDayByICalUriAsync(DateTime.Today, config.Source);
                 lock (_lock)
                 {
                     try
