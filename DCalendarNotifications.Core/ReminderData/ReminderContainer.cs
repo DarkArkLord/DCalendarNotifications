@@ -17,10 +17,10 @@ namespace DCalendarNotifications.Core.ReminderData
                 int? previousTime = null;
                 foreach (var time in notificationOffsets)
                 {
-                    var startPeriod = calEvent.Start.AddMinutes(time);
+                    var startPeriod = calEvent.Start.AddSeconds(time);
                     var endPeriod = previousTime == null
                         ? calEvent.Start.AddMinutes(1)
-                        : calEvent.Start.AddMinutes(previousTime.Value).AddSeconds(-1);
+                        : calEvent.Start.AddSeconds(previousTime.Value).AddSeconds(-1);
                     previousTime = time;
 
                     newRemainders.Add(new Reminder()
