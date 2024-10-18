@@ -69,7 +69,6 @@ namespace DCalendarNotifications.Core.ReminderData
                         _reminders.Add(newRemainder);
                     }
                 }
-
             }
         }
 
