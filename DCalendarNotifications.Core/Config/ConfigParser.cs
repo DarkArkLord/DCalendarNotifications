@@ -10,6 +10,7 @@ namespace DCalendarNotifications.Core.Config
     {
         public static XDocument ReadXml(string path)
         {
+            // Xml не умеет обрабатываеть "&", поэтому заменяем их на "&amp;"
             var file = File.ReadAllText(path).Replace("&", "&amp;");
             var xDocument = XDocument.Parse(file);
             return xDocument;
@@ -154,7 +155,8 @@ namespace DCalendarNotifications.Core.Config
                 AddNotificationOffsetValue(node, offsetsList);
             }
 
-            offsetsList.Sort();
+            // Временные сдвиги сортируются по убывания
+            offsetsList.Sort((a, b) => b - a);
         }
 
         private static void AddNotificationOffsetValue(XElement offsetNode, List<int> offsetsList)
