@@ -9,25 +9,25 @@ namespace DCalendarNotifications.Core.ReminderData
     {
         private IList<Reminder> _reminders = new List<Reminder>();
 
-        public void Update(Day day, int[] times)
+        public void Update(Day day, IEnumerable<int> notificationOffsets)
         {
             var newRemainders = new List<Reminder>();
             foreach (var calEvent in day.Events)
             {
                 int? previousTime = null;
-                foreach (var time in times.OrderBy(t => t))
+                foreach (var time in notificationOffsets)
                 {
-                    var startPeriod = calEvent.Start.AddMinutes(time * -1);
+                    var startPeriod = calEvent.Start.AddMinutes(time);
                     var endPeriod = previousTime == null
                         ? calEvent.Start.AddMinutes(1)
-                        : calEvent.Start.AddMinutes(previousTime.Value * -1).AddSeconds(-1);
+                        : calEvent.Start.AddMinutes(previousTime.Value).AddSeconds(-1);
                     previousTime = time;
 
                     newRemainders.Add(new Reminder()
                     {
                         Event = calEvent,
                         Start = startPeriod,
-                        End = endPeriod
+                        End = endPeriod,
                     });
                 }
             }
