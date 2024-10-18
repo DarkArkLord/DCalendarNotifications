@@ -112,15 +112,10 @@ namespace DCalendarNotifications.Desctop.WF
             try
             {
                 var reminders = _reminderContainer.Call();
-
                 foreach (var reminder in reminders)
                 {
                     ShowEventInfo(reminder.Event);
-                }
-
-                if (reminders.Count() > 0)
-                {
-                    AddLog($"Напоминания: {reminders.Count()}.");
+                    AddLog($"Напоминание: {reminder.Event.Title}.");
                 }
             }
             catch (Exception ex)
@@ -133,13 +128,14 @@ namespace DCalendarNotifications.Desctop.WF
 
         #region Common Methods
 
-        private void ConfigureReminder()
+        private async void ConfigureReminder()
         {
             try
             {
                 ReadConfig();
 
-                UpdateReminderContainer();
+                await UpdateReminderContainer();
+                ReminderActivation();
 
                 calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(config.UpdateInterval).TotalMilliseconds;
                 calendarUpdateTimer.Start();
