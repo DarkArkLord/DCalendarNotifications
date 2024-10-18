@@ -132,6 +132,9 @@ namespace DCalendarNotifications.Desctop.WF
         {
             try
             {
+                calendarUpdateTimer.Stop();
+                reminderTimer.Stop();
+
                 ReadConfig();
 
                 await UpdateReminderContainer();
