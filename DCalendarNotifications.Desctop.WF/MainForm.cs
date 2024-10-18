@@ -90,7 +90,7 @@ namespace DCalendarNotifications.Desctop.WF
                 {
                     try
                     {
-                        _reminderContainer.Update(day, new[] { 0, 5, 15 });
+                        _reminderContainer.Update(day, config.NotificationOffsets);
                     }
                     catch (Exception ex)
                     {
@@ -141,10 +141,10 @@ namespace DCalendarNotifications.Desctop.WF
 
                 UpdateReminderContainer();
 
-                calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+                calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(config.UpdateInterval).TotalMilliseconds;
                 calendarUpdateTimer.Start();
 
-                reminderTimer.Interval = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
+                reminderTimer.Interval = (int)TimeSpan.FromSeconds(config.ReminderInterval).TotalMilliseconds;
                 reminderTimer.Start();
             }
             catch (Exception ex)
