@@ -164,6 +164,7 @@ namespace DCalendarNotifications.Desctop.WF
         private void ShowEventInfo(CalendarEvent calEvent)
         {
             var eventForm = new EventForm(calEvent);
+            // Добавить звук?
             eventForm.Show();
         }
 
