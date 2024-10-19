@@ -13,6 +13,8 @@
 
 # DCalendarNotifications
 
+***DCalendarNotifications*** - приложение, выдающее уведомления о событиях из Яндекс.Календаря.
+
 # Технологии
 
 - Основа проекта - `.Net Core 6.0` и `Windows Forms`
