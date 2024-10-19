@@ -90,7 +90,14 @@ namespace DCalendarNotifications.Core.Config
 
             if (int.TryParse(updateIntervalString, out int updateInterval))
             {
-                config.UpdateInterval = updateInterval;
+                if (updateInterval > 0)
+                {
+                    config.UpdateInterval = updateInterval;
+                }
+                else
+                {
+                    throw new Exception($"Атрибут \"UpdateInterval\" секции \"Timers\" должен быть натуральным числом ({updateIntervalString}).");
+                }
             }
             else
             {
@@ -108,7 +115,14 @@ namespace DCalendarNotifications.Core.Config
 
             if (int.TryParse(reminderIntervalString, out int reminderInterval))
             {
-                config.ReminderInterval = reminderInterval;
+                if (reminderInterval > 0)
+                {
+                    config.ReminderInterval = reminderInterval;
+                }
+                else
+                {
+                    throw new Exception($"Атрибут \"ReminderInterval\" секции \"Timers\" должен быть натуральным числом ({reminderIntervalString}).");
+                }
             }
             else
             {
