@@ -32,7 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             trayIcon = new System.Windows.Forms.NotifyIcon(components);
             trayIconMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
-            закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            reloadКонфигурациюToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            getDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            showNotificationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             gbEvents = new System.Windows.Forms.GroupBox();
             lbEvents = new System.Windows.Forms.ListBox();
             gbLog = new System.Windows.Forms.GroupBox();
@@ -54,16 +58,44 @@
             // 
             // trayIconMenuStrip
             // 
-            trayIconMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { закрытьToolStripMenuItem });
+            trayIconMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { showNotificationsToolStripMenuItem, getDataToolStripMenuItem, reloadКонфигурациюToolStripMenuItem1, folderToolStripMenuItem, closeToolStripMenuItem });
             trayIconMenuStrip.Name = "trayIconMenuStrip";
-            trayIconMenuStrip.Size = new System.Drawing.Size(121, 26);
+            trayIconMenuStrip.Size = new System.Drawing.Size(211, 136);
             // 
-            // закрытьToolStripMenuItem
+            // closeToolStripMenuItem
             // 
-            закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
-            закрытьToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            закрытьToolStripMenuItem.Text = "Закрыть";
-            закрытьToolStripMenuItem.Click += trayIconMenuItem_close_Click;
+            closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            closeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            closeToolStripMenuItem.Text = "Закрыть";
+            closeToolStripMenuItem.Click += menuItem_close_Click;
+            // 
+            // folderToolStripMenuItem
+            // 
+            folderToolStripMenuItem.Name = "folderToolStripMenuItem";
+            folderToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            folderToolStripMenuItem.Text = "Конфигурация";
+            folderToolStripMenuItem.Click += menuItem_folder_Click;
+            // 
+            // reloadКонфигурациюToolStripMenuItem1
+            // 
+            reloadКонфигурациюToolStripMenuItem1.Name = "reloadКонфигурациюToolStripMenuItem1";
+            reloadКонфигурациюToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            reloadКонфигурациюToolStripMenuItem1.Text = "Перезагрузка";
+            reloadКонфигурациюToolStripMenuItem1.Click += menuItem_reload_Click;
+            // 
+            // getDataToolStripMenuItem
+            // 
+            getDataToolStripMenuItem.Name = "getDataToolStripMenuItem";
+            getDataToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            getDataToolStripMenuItem.Text = "Обновить данные";
+            getDataToolStripMenuItem.Click += menuItem_getData_Click;
+            // 
+            // showNotificationsToolStripMenuItem
+            // 
+            showNotificationsToolStripMenuItem.Name = "showNotificationsToolStripMenuItem";
+            showNotificationsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            showNotificationsToolStripMenuItem.Text = "Проверить уведомления";
+            showNotificationsToolStripMenuItem.Click += menuItem_showNotifications_Click;
             // 
             // gbEvents
             // 
@@ -144,12 +176,16 @@
 
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayIconMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.GroupBox gbEvents;
         private System.Windows.Forms.GroupBox gbLog;
         private System.Windows.Forms.ListBox lbEvents;
         private System.Windows.Forms.Timer calendarUpdateTimer;
         private System.Windows.Forms.Timer reminderTimer;
         private System.Windows.Forms.TextBox tbLog;
+        private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadКонфигурациюToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem getDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showNotificationsToolStripMenuItem;
     }
 }

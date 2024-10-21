@@ -3,6 +3,7 @@ using DCalendarNotifications.Core.CalendarData;
 using DCalendarNotifications.Core.Config;
 using DCalendarNotifications.Core.ReminderData;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace DCalendarNotifications.Desctop.WF
             ConfigureReminder();
         }
 
-        #region For Closing
+        #region Minimizing
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -40,11 +41,6 @@ namespace DCalendarNotifications.Desctop.WF
             this.WindowState = FormWindowState.Normal;
             this.Activate();
             this.Focus();
-        }
-
-        private void trayIconMenuItem_close_Click(object sender, System.EventArgs e)
-        {
-            Application.Exit();
         }
 
         #endregion
@@ -67,6 +63,37 @@ namespace DCalendarNotifications.Desctop.WF
             {
                 ShowEventInfo(calEvent);
             }
+        }
+
+        #endregion
+
+        #region Menu items
+
+        private void menuItem_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void menuItem_folder_Click(object sender, EventArgs e)
+        {
+            var path = $"/select, \"{Environment.CurrentDirectory}\\Config.xml\"";
+            Process.Start("explorer.exe", path);
+            AddLog("Директория открыта.");
+        }
+
+        private void menuItem_reload_Click(object sender, EventArgs e)
+        {
+            ConfigureReminder();
+        }
+
+        private async void menuItem_getData_Click(object sender, EventArgs e)
+        {
+            await UpdateReminderContainer();
+        }
+
+        private void menuItem_showNotifications_Click(object sender, EventArgs e)
+        {
+            ReminderActivation();
         }
 
         #endregion
