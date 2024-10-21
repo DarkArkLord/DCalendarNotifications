@@ -117,6 +117,8 @@ namespace DCalendarNotifications.Desctop.WF
                     ShowEventInfo(reminder.Event);
                     AddLog($"Напоминание: {reminder.Event.Title}.");
                 }
+
+                AddLog($"Отображено напоминаний: {reminders.Count()}.");
             }
             catch (Exception ex)
             {
@@ -165,7 +167,6 @@ namespace DCalendarNotifications.Desctop.WF
         {
             var eventForm = new EventForm(calEvent);
             // Добавить звук?
-            // Вынести установку флага вызванности
             eventForm.Show();
         }
 
