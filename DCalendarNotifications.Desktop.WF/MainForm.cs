@@ -18,6 +18,8 @@ namespace DCalendarNotifications.Desctop.WF
         private ReminderContainer _reminderContainer = new ReminderContainer();
         private object _lock = new();
 
+        private bool minimizeInsteadClosing = true;
+
         public MainForm()
         {
             InitializeComponent();
@@ -28,10 +30,13 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.ShowInTaskbar = false;
-            this.WindowState = FormWindowState.Minimized;
-            this.Hide();
+            if (minimizeInsteadClosing)
+            {
+                e.Cancel = true;
+                this.ShowInTaskbar = false;
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+            }
         }
 
         private void trayIcon_MouseClick(object sender, MouseEventArgs e)
@@ -71,6 +76,7 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void menuItem_close_Click(object sender, EventArgs e)
         {
+            minimizeInsteadClosing = false;
             Application.Exit();
         }
 
