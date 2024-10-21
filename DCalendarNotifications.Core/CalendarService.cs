@@ -48,8 +48,10 @@ namespace DCalendarNotifications.Core
                         Start = occurrence.Period.StartTime.AsUtc.ToLocalTime(),
                         End = occurrence.Period.EndTime.AsUtc.ToLocalTime(),
                         Description = calEvent.Description,
-                        Organizer = calEvent.Organizer?.Value,
-                        Attendees = calEvent.Attendees.Select(a => a.Value),
+                        Organizer = calEvent.Organizer is not null
+                            ? $"{calEvent.Organizer.CommonName} ({GetMail(calEvent.Organizer.Value)})"
+                            : null,
+                        Attendees = calEvent.Attendees.Select(a => $"{a.CommonName} ({GetMail(a.Value)})"),
                         Location = calEvent.Location,
                         Url = calEvent.Url
                     });
@@ -57,6 +59,11 @@ namespace DCalendarNotifications.Core
             }
 
             return day;
+        }
+
+        private static string GetMail(Uri uri)
+        {
+            return uri.AbsoluteUri.Replace("mailto:", "");
         }
     }
 }

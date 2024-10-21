@@ -21,8 +21,8 @@ namespace DCalendarNotifications.Desctop.WF
         private void UIUpdate()
         {
             titleLinkLabel.Text = $"{calEvent.Title} ({calEvent.Start:HH:mm}-{calEvent.End:HH:mm})";
-            tbOrganizer.Text = calEvent.Organizer?.UserInfo;
-            tbAttendees.Text = string.Join("; ", calEvent.Attendees.Select(a => a.UserInfo));
+            tbOrganizer.Text = calEvent.Organizer;
+            tbAttendees.Text = string.Join("; ", calEvent.Attendees);
             tbLocation.Text = calEvent.Location;
             rtbDescription.Text = calEvent.Description;
         }

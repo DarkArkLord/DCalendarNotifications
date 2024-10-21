@@ -15,9 +15,9 @@ namespace DCalendarNotifications.Core.CalendarData
 
         public string Description { get; init; }
 
-        public Uri Organizer { get; init; }
+        public string? Organizer { get; init; }
 
-        public IEnumerable<Uri> Attendees { get; init; }
+        public IEnumerable<string> Attendees { get; init; }
 
         public string Location { get; init; }
 
