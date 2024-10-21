@@ -165,6 +165,7 @@ namespace DCalendarNotifications.Desctop.WF
         {
             var eventForm = new EventForm(calEvent);
             // Добавить звук?
+            // Вынести установку флага вызванности
             eventForm.Show();
         }
 
