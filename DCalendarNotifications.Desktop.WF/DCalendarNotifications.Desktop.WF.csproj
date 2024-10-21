@@ -6,10 +6,15 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>disable</ImplicitUsings>
+    <ApplicationIcon>calendar.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="calendar.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="calendar.ico" />
   </ItemGroup>
 
   <ItemGroup>
