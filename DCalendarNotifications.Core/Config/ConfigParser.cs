@@ -22,7 +22,7 @@ namespace DCalendarNotifications.Core.Config
             var config = new ConfigData();
 
             SetSourceValue(configNode, config);
-            SetTimersValues(configNode, config);
+            SetIntervalsValues(configNode, config);
             SetNotificationOffsetsValues(configNode, config);
 
             return config;
@@ -68,7 +68,7 @@ namespace DCalendarNotifications.Core.Config
             }
         }
 
-        private static void SetTimersValues(XElement configNode, ConfigData config)
+        private static void SetIntervalsValues(XElement configNode, ConfigData config)
         {
             var timersNode = configNode.Element("Timers");
             if (timersNode is null)
