@@ -9,10 +9,16 @@ namespace DCalendarNotifications.Core.ReminderData
     {
         private IList<Reminder> _reminders = new List<Reminder>();
 
+        /// <summary>
+        /// Обновление списка уведомлений
+        /// </summary>
+        /// <param name="day">Параметры дня, считанные из календаря</param>
+        /// <param name="notificationOffsets">Набор временных сдвигов для уведомлений</param>
         public void Update(Day day, IEnumerable<int> notificationOffsets)
         {
             // Вернуть сортировку для notificationOffsets?
             var newRemainders = new List<Reminder>();
+            // Для каждого события добавляем уведомление для каждого временного сдвига
             foreach (var calEvent in day.Events)
             {
                 int? previousTime = null;
@@ -41,7 +47,7 @@ namespace DCalendarNotifications.Core.ReminderData
             {
                 var deletedReminders = new List<Reminder>();
 
-                // Update reminders
+                // Обновление уведомлений
                 foreach (var oldReminder in _reminders)
                 {
                     var updatedReminder = newRemainders.FirstOrDefault(r => r.Id.Equals(oldReminder.Id));
@@ -55,13 +61,13 @@ namespace DCalendarNotifications.Core.ReminderData
                     }
                 }
 
-                // Delete reminders
+                // Удаление уведомлений
                 foreach (var deletedReminder in deletedReminders)
                 {
                     _reminders.Remove(deletedReminder);
                 }
 
-                // Add new reminders
+                // Добавление новых уведомлений
                 foreach (var newRemainder in newRemainders)
                 {
                     var oldReminder = _reminders.FirstOrDefault(r => r.Id.Equals(newRemainder.Id));
@@ -73,11 +79,20 @@ namespace DCalendarNotifications.Core.ReminderData
             }
         }
 
+        /// <summary>
+        /// Вызов уведомлений для текущего времени
+        /// </summary>
+        /// <returns>Список уведомлений</returns>
         public IEnumerable<Reminder> Call()
         {
             return Call(DateTime.Now);
         }
 
+        /// <summary>
+        /// Вызов уведомлений для определенного времени
+        /// </summary>
+        /// <param name="dateTime">Время уведомлений</param>
+        /// <returns>Список уведомлений</returns>
         public IEnumerable<Reminder> Call(DateTime dateTime)
         {
             var result = new List<Reminder>();

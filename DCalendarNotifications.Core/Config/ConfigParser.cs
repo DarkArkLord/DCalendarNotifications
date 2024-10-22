@@ -8,6 +8,11 @@ namespace DCalendarNotifications.Core.Config
 {
     public static class ConfigParser
     {
+        /// <summary>
+        /// Считывание XML-документа
+        /// </summary>
+        /// <param name="path">Путь к документу</param>
+        /// <returns>XML-документ</returns>
         public static XDocument ReadXml(string path)
         {
             // Xml не умеет обрабатываеть "&", поэтому заменяем их на "&amp;"
@@ -16,6 +21,11 @@ namespace DCalendarNotifications.Core.Config
             return xDocument;
         }
 
+        /// <summary>
+        /// Парсинг XML-документа с конфигурацией
+        /// </summary>
+        /// <param name="xml">XML-документ с конфигурацией</param>
+        /// <returns>Конфигурация DCalendarNotifications</returns>
         public static ConfigData Parse(XDocument xml)
         {
             var configNode = GetConfigNode(xml);
@@ -28,6 +38,7 @@ namespace DCalendarNotifications.Core.Config
             return config;
         }
 
+        // Считывание основной секции
         private static XElement GetConfigNode(XDocument xml)
         {
             if (xml is null)
@@ -44,6 +55,7 @@ namespace DCalendarNotifications.Core.Config
             return configNode;
         }
 
+        // Установка поля источника данных 
         private static void SetSourceValue(XElement configNode, ConfigData config)
         {
             var sourceElement = configNode.Element("Source");
@@ -68,6 +80,7 @@ namespace DCalendarNotifications.Core.Config
             }
         }
 
+        // Установка полей интервалов
         private static void SetIntervalsValues(XElement configNode, ConfigData config)
         {
             var timersNode = configNode.Element("Timers");
@@ -80,6 +93,7 @@ namespace DCalendarNotifications.Core.Config
             SetReminderIntervalValue(timersNode, config);
         }
 
+        // Установка интервала обновления данных
         private static void SetUpdateIntervalValue(XElement timersNode, ConfigData config)
         {
             var updateIntervalString = timersNode.Attribute("UpdateInterval")?.Value?.Trim();
@@ -105,6 +119,7 @@ namespace DCalendarNotifications.Core.Config
             }
         }
 
+        // Установка интервала проверки выдачи уведомлений
         private static void SetReminderIntervalValue(XElement timersNode, ConfigData config)
         {
             var reminderIntervalString = timersNode.Attribute("ReminderInterval")?.Value?.Trim();
@@ -130,6 +145,7 @@ namespace DCalendarNotifications.Core.Config
             }
         }
 
+        // Установка временных сдвигов для выдачи уведомлений
         private static void SetNotificationOffsetsValues(XElement configNode, ConfigData config)
         {
             var offsetsListNode = configNode.Element("NotificationTimeOffsetsList");
@@ -173,6 +189,7 @@ namespace DCalendarNotifications.Core.Config
             offsetsList.Sort((a, b) => b - a);
         }
 
+        // Расчет и добавление временного сдвига
         private static void AddNotificationOffsetValue(XElement offsetNode, List<int> offsetsList)
         {
             if (offsetNode is null)
@@ -189,6 +206,7 @@ namespace DCalendarNotifications.Core.Config
             offsetsList.Add(totalOffset);
         }
 
+        // Считывание атрибута временного сдвига
         private static int GetNotificationOffsetAttribute(XElement offsetNode, string attrName)
         {
             var attrValueString = offsetNode.Attribute(attrName)?.Value?.Trim();

@@ -3,6 +3,9 @@ using System;
 
 namespace DCalendarNotifications.Core.ReminderData
 {
+    /// <summary>
+    /// Данные напоминания о событии
+    /// </summary>
     public class Reminder
     {
         public CalendarEvent Event { get; set; }

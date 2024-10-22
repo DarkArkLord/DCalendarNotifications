@@ -9,6 +9,12 @@ namespace DCalendarNotifications.Core
 {
     public static class CalendarService
     {
+        /// <summary>
+        /// Загрузка данных из календаря по ссылке
+        /// </summary>
+        /// <param name="date">Дата, к которой относятся данные</param>
+        /// <param name="uri">Ссылка на каледнарь-источник</param>
+        /// <returns>Данные о событиях</returns>
         public static async Task<Day> LoadDayByICalUriAsync(DateTime date, Uri uri)
         {
             using var httpClient = new HttpClient();
@@ -16,16 +22,23 @@ namespace DCalendarNotifications.Core
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            return LoadDayByICal(date, responseString);
+            return ParseICalToDay(date, responseString);
         }
 
+        /// <summary>
+        /// Загрузка данных из календаря из файла
+        /// </summary>
+        /// <param name="date">Дата, к которой относятся данные</param>
+        /// <param name="icsFilePath">Путь для файла с данными</param>
+        /// <returns>Данные о событиях</returns>
         public static async Task<Day> LoadDayByICalFileAsync(DateTime date, string icsFilePath)
         {
             var iCalString = await File.ReadAllTextAsync(icsFilePath);
-            return LoadDayByICal(date, iCalString);
+            return ParseICalToDay(date, iCalString);
         }
 
-        private static Day LoadDayByICal(DateTime date, string iCalString)
+        // Парсинг ICal данных
+        private static Day ParseICalToDay(DateTime date, string iCalString)
         {
             var calendar = Ical.Net.Calendar.Load(iCalString);
             var currentOccurrences = calendar.GetOccurrences(date);
@@ -61,6 +74,7 @@ namespace DCalendarNotifications.Core
             return day;
         }
 
+        // Очистка почтовых ссылок
         private static string GetMail(Uri uri)
         {
             return uri.AbsoluteUri.Replace("mailto:", "");

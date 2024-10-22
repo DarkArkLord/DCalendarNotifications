@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DCalendarNotifications.Core.CalendarData
 {
+    /// <summary>
+    /// Данные события
+    /// </summary>
     public class CalendarEvent
     {
         public string Id { get; init; }
