@@ -1,7 +1,5 @@
 ﻿using DCalendarNotifications.Core.CalendarData;
-using System.Data;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace DCalendarNotifications.Desctop.WF
@@ -23,24 +21,22 @@ namespace DCalendarNotifications.Desctop.WF
             titleLinkLabel.Text = $"{calEvent.Title} ({calEvent.Start:HH:mm}-{calEvent.End:HH:mm})";
             tbOrganizer.Text = calEvent.Organizer;
             tbAttendees.Text = string.Join("; ", calEvent.Attendees);
-            // Сделать ссылкой?
-            tbLocation.Text = calEvent.Location;
+            rtbLocation.Text = calEvent.Location;
             rtbDescription.Text = calEvent.Description;
         }
 
         private void titleLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(calEvent.Url.AbsoluteUri)
-            {
-                UseShellExecute = true,
-            });
+            var psi = new ProcessStartInfo(calEvent.Url.AbsoluteUri) { UseShellExecute = true, };
+            Process.Start(psi);
         }
 
         private void OnLinkClicked(object sender, LinkClickedEventArgs e)
         {
-            if (e.LinkText is not null)
+            if (!string.IsNullOrEmpty(e.LinkText))
             {
-                Process.Start(e.LinkText);
+                var psi = new ProcessStartInfo(e.LinkText) { UseShellExecute = true, };
+                Process.Start(psi);
             }
         }
     }

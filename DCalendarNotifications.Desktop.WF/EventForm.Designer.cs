@@ -35,8 +35,8 @@
             gbAttendees = new System.Windows.Forms.GroupBox();
             tbAttendees = new System.Windows.Forms.TextBox();
             gbLocation = new System.Windows.Forms.GroupBox();
-            tbLocation = new System.Windows.Forms.TextBox();
             rtbDescription = new System.Windows.Forms.RichTextBox();
+            rtbLocation = new System.Windows.Forms.RichTextBox();
             gbOrganizer.SuspendLayout();
             gbAttendees.SuspendLayout();
             gbLocation.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             // gbLocation
             // 
-            gbLocation.Controls.Add(tbLocation);
+            gbLocation.Controls.Add(rtbLocation);
             gbLocation.Dock = System.Windows.Forms.DockStyle.Top;
             gbLocation.Location = new System.Drawing.Point(0, 170);
             gbLocation.Name = "gbLocation";
@@ -106,15 +106,6 @@
             gbLocation.TabIndex = 3;
             gbLocation.TabStop = false;
             gbLocation.Text = "Расположение";
-            // 
-            // tbLocation
-            // 
-            tbLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            tbLocation.Location = new System.Drawing.Point(3, 19);
-            tbLocation.Name = "tbLocation";
-            tbLocation.ReadOnly = true;
-            tbLocation.Size = new System.Drawing.Size(578, 23);
-            tbLocation.TabIndex = 0;
             // 
             // rtbDescription
             // 
@@ -127,6 +118,17 @@
             rtbDescription.TabIndex = 4;
             rtbDescription.Text = "";
             rtbDescription.LinkClicked += OnLinkClicked;
+            // 
+            // rtbLocation
+            // 
+            rtbLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            rtbLocation.Location = new System.Drawing.Point(3, 19);
+            rtbLocation.Name = "rtbLocation";
+            rtbLocation.ReadOnly = true;
+            rtbLocation.Size = new System.Drawing.Size(578, 28);
+            rtbLocation.TabIndex = 0;
+            rtbLocation.Text = "";
+            rtbLocation.LinkClicked += OnLinkClicked;
             // 
             // EventForm
             // 
@@ -151,7 +153,6 @@
             gbAttendees.ResumeLayout(false);
             gbAttendees.PerformLayout();
             gbLocation.ResumeLayout(false);
-            gbLocation.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -163,7 +164,7 @@
         private System.Windows.Forms.GroupBox gbAttendees;
         private System.Windows.Forms.TextBox tbAttendees;
         private System.Windows.Forms.GroupBox gbLocation;
-        private System.Windows.Forms.TextBox tbLocation;
         private System.Windows.Forms.RichTextBox rtbDescription;
+        private System.Windows.Forms.RichTextBox rtbLocation;
     }
 }
