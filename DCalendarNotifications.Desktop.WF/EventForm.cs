@@ -23,6 +23,7 @@ namespace DCalendarNotifications.Desctop.WF
             titleLinkLabel.Text = $"{calEvent.Title} ({calEvent.Start:HH:mm}-{calEvent.End:HH:mm})";
             tbOrganizer.Text = calEvent.Organizer;
             tbAttendees.Text = string.Join("; ", calEvent.Attendees);
+            // Сделать ссылкой?
             tbLocation.Text = calEvent.Location;
             rtbDescription.Text = calEvent.Description;
         }
