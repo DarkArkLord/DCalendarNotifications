@@ -35,5 +35,13 @@ namespace DCalendarNotifications.Desctop.WF
                 UseShellExecute = true,
             });
         }
+
+        private void OnLinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            if (e.LinkText is not null)
+            {
+                Process.Start(e.LinkText);
+            }
+        }
     }
 }

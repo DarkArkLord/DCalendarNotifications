@@ -126,6 +126,7 @@
             rtbDescription.Size = new System.Drawing.Size(584, 191);
             rtbDescription.TabIndex = 4;
             rtbDescription.Text = "";
+            rtbDescription.LinkClicked += OnLinkClicked;
             // 
             // EventForm
             // 
