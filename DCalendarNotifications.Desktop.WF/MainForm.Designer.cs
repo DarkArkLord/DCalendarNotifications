@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             trayIcon = new System.Windows.Forms.NotifyIcon(components);
             trayIconMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
-            closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            reloadКонфигурациюToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            getDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             showNotificationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            getDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            reloadКонфигурациюToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             gbEvents = new System.Windows.Forms.GroupBox();
             lbEvents = new System.Windows.Forms.ListBox();
             gbLog = new System.Windows.Forms.GroupBox();
@@ -60,28 +60,14 @@
             // 
             trayIconMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { showNotificationsToolStripMenuItem, getDataToolStripMenuItem, reloadКонфигурациюToolStripMenuItem1, folderToolStripMenuItem, closeToolStripMenuItem });
             trayIconMenuStrip.Name = "trayIconMenuStrip";
-            trayIconMenuStrip.Size = new System.Drawing.Size(211, 136);
+            trayIconMenuStrip.Size = new System.Drawing.Size(211, 114);
             // 
-            // closeToolStripMenuItem
+            // showNotificationsToolStripMenuItem
             // 
-            closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            closeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            closeToolStripMenuItem.Text = "Закрыть";
-            closeToolStripMenuItem.Click += menuItem_close_Click;
-            // 
-            // folderToolStripMenuItem
-            // 
-            folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            folderToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            folderToolStripMenuItem.Text = "Конфигурация";
-            folderToolStripMenuItem.Click += menuItem_folder_Click;
-            // 
-            // reloadКонфигурациюToolStripMenuItem1
-            // 
-            reloadКонфигурациюToolStripMenuItem1.Name = "reloadКонфигурациюToolStripMenuItem1";
-            reloadКонфигурациюToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
-            reloadКонфигурациюToolStripMenuItem1.Text = "Перезагрузка";
-            reloadКонфигурациюToolStripMenuItem1.Click += menuItem_reload_Click;
+            showNotificationsToolStripMenuItem.Name = "showNotificationsToolStripMenuItem";
+            showNotificationsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            showNotificationsToolStripMenuItem.Text = "Проверить уведомления";
+            showNotificationsToolStripMenuItem.Click += menuItem_showNotifications_Click;
             // 
             // getDataToolStripMenuItem
             // 
@@ -90,12 +76,26 @@
             getDataToolStripMenuItem.Text = "Обновить данные";
             getDataToolStripMenuItem.Click += menuItem_getData_Click;
             // 
-            // showNotificationsToolStripMenuItem
+            // reloadКонфигурациюToolStripMenuItem1
             // 
-            showNotificationsToolStripMenuItem.Name = "showNotificationsToolStripMenuItem";
-            showNotificationsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            showNotificationsToolStripMenuItem.Text = "Проверить уведомления";
-            showNotificationsToolStripMenuItem.Click += menuItem_showNotifications_Click;
+            reloadКонфигурациюToolStripMenuItem1.Name = "reloadКонфигурациюToolStripMenuItem1";
+            reloadКонфигурациюToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            reloadКонфигурациюToolStripMenuItem1.Text = "Перезагрузка";
+            reloadКонфигурациюToolStripMenuItem1.Click += menuItem_reload_Click;
+            // 
+            // folderToolStripMenuItem
+            // 
+            folderToolStripMenuItem.Name = "folderToolStripMenuItem";
+            folderToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            folderToolStripMenuItem.Text = "Конфигурация";
+            folderToolStripMenuItem.Click += menuItem_folder_Click;
+            // 
+            // closeToolStripMenuItem
+            // 
+            closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            closeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            closeToolStripMenuItem.Text = "Закрыть";
+            closeToolStripMenuItem.Click += menuItem_close_Click;
             // 
             // gbEvents
             // 
@@ -162,7 +162,7 @@
             MinimizeBox = false;
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "MainForm";
+            Text = "Календарная напоминалка";
             TopMost = true;
             FormClosing += MainForm_FormClosing;
             trayIconMenuStrip.ResumeLayout(false);
