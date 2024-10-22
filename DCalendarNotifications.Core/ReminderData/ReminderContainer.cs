@@ -11,6 +11,7 @@ namespace DCalendarNotifications.Core.ReminderData
 
         public void Update(Day day, IEnumerable<int> notificationOffsets)
         {
+            // Вернуть сортировку для notificationOffsets?
             var newRemainders = new List<Reminder>();
             foreach (var calEvent in day.Events)
             {
