@@ -184,9 +184,6 @@ namespace DCalendarNotifications.Core.Config
             {
                 AddNotificationOffsetValue(node, offsetsList);
             }
-
-            // Временные сдвиги сортируются по убывания
-            offsetsList.Sort((a, b) => b - a);
         }
 
         // Расчет и добавление временного сдвига

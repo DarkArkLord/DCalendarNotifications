@@ -16,7 +16,7 @@ namespace DCalendarNotifications.Core.ReminderData
         /// <param name="notificationOffsets">Набор временных сдвигов для уведомлений</param>
         public void Update(Day day, IEnumerable<int> notificationOffsets)
         {
-            // Вернуть сортировку для notificationOffsets?
+            notificationOffsets = notificationOffsets.OrderByDescending(x => x);
             var newRemainders = new List<Reminder>();
             // Для каждого события добавляем уведомление для каждого временного сдвига
             foreach (var calEvent in day.Events)
