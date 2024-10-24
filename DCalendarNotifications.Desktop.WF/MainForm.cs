@@ -15,6 +15,9 @@ namespace DCalendarNotifications.Desctop.WF
     public partial class MainForm : Form
     {
         private ConfigData config;
+
+        private LogsContainer logs = new LogsContainer();
+
         private ReminderContainer _reminderContainer = new ReminderContainer();
         private object _lock = new();
 
@@ -152,10 +155,10 @@ namespace DCalendarNotifications.Desctop.WF
                 }
 
                 var remindersCount = reminders.Count();
-                if (remindersCount > 0)
-                {
+                //if (remindersCount > 0)
+                //{
                     AddLog($"Отображено напоминаний: {reminders.Count()}.");
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -210,10 +213,8 @@ namespace DCalendarNotifications.Desctop.WF
         private void AddLog(string message)
         {
             var newLogText = $"[{DateTime.Now:dd.MM.yyyy HH:mm:ss}]: {message}";
-            var logText = tbLog.Text.Length < 1
-                ? newLogText
-                : $"{newLogText}{Environment.NewLine}{tbLog.Text}";
-            tbLog.Text = logText;
+            logs.AddLog(newLogText);
+            tbLog.Text = logs.GetLogs();
         }
 
         private void AddLog(Exception ex)
