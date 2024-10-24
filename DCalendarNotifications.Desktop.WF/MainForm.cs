@@ -151,7 +151,11 @@ namespace DCalendarNotifications.Desctop.WF
                     AddLog($"Напоминание: {reminder.Event.Title}.");
                 }
 
-                AddLog($"Отображено напоминаний: {reminders.Count()}.");
+                var remindersCount = reminders.Count();
+                if (remindersCount > 0)
+                {
+                    AddLog($"Отображено напоминаний: {reminders.Count()}.");
+                }
             }
             catch (Exception ex)
             {
