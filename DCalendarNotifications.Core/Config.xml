@@ -4,6 +4,8 @@
 
     <Timers UpdateInterval="3600" ReminderInterval="60" />
 
+    <MaxLogsCount>50</MaxLogsCount>
+
     <NotificationTimeOffsetsList>
         <TimeOffset Hours="0" Minutes="-15" Seconds="0" />
         <TimeOffset Hours="0" Minutes="-5" Seconds="0" />

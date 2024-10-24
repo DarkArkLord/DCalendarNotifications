@@ -21,6 +21,11 @@ namespace DCalendarNotifications.Core.Config
         public int ReminderInterval { get; set; }
 
         /// <summary>
+        /// Максимальное количество записей в журнале логов
+        /// </summary>
+        public int MaxLogsCount { get; set; }
+
+        /// <summary>
         /// Список сдвигов по времени дял уведомлений
         /// </summary>
         public IList<int> NotificationOffsets { get; } = new List<int>();

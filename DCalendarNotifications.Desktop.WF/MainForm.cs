@@ -26,6 +26,7 @@ namespace DCalendarNotifications.Desctop.WF
         public MainForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Minimized;
             ConfigureReminder();
         }
 
@@ -178,6 +179,8 @@ namespace DCalendarNotifications.Desctop.WF
                 reminderTimer.Stop();
 
                 ReadConfig();
+
+                logs.SetMaxRecordsCount(config.MaxLogsCount);
 
                 await UpdateReminderContainer();
                 ReminderActivation();

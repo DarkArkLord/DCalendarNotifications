@@ -33,6 +33,7 @@ namespace DCalendarNotifications.Core.Config
 
             SetSourceValue(configNode, config);
             SetIntervalsValues(configNode, config);
+            SetMaxLogsCountValue(configNode, config);
             SetNotificationOffsetsValues(configNode, config);
 
             return config;
@@ -142,6 +143,39 @@ namespace DCalendarNotifications.Core.Config
             else
             {
                 throw new Exception($"Атрибут \"ReminderInterval\" секции \"Timers\" не может быть преобразован в число ({reminderIntervalString}).");
+            }
+        }
+
+        // Установка максимального количества записей для журнала логов
+        private static void SetMaxLogsCountValue(XElement configNode, ConfigData config)
+        {
+
+            var maxLogsCountElement = configNode.Element("MaxLogsCount");
+            if (maxLogsCountElement is null)
+            {
+                throw new Exception($"Секция \"MaxLogsCount\" не обнаружена.");
+            }
+
+            var maxLogsCountString = maxLogsCountElement.Value?.Trim();
+            if (string.IsNullOrEmpty(maxLogsCountString))
+            {
+                throw new Exception($"Секция \"MaxLogsCount\" не заполнена.");
+            }
+
+            if (int.TryParse(maxLogsCountString, out int maxLogsCount))
+            {
+                if (maxLogsCount > 0)
+                {
+                    config.MaxLogsCount = maxLogsCount;
+                }
+                else
+                {
+                    throw new Exception($"Значение секции \"MaxLogsCount\" должно быть натуральным числом ({maxLogsCount}).");
+                }
+            }
+            else
+            {
+                throw new Exception($"Значение секции \"MaxLogsCount\" не может быть преобразовано в число ({maxLogsCountString}).");
             }
         }
 
