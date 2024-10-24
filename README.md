@@ -46,6 +46,7 @@
 - `Timers`  - отвечает за настройку таймеров:
   - Артибут `UpdateInterval` содержит интервал таймера обновления данных в секундах;
   - Артибут `ReminderInterval` содержит интервал таймера выдачи уведомлений в секундах;
+- `MaxLogsCount` - устанавливает максимальное количество записей в журнале логов;
 - `NotificationTimeOffsetsList` - отвечает за настройку временных сдвигов для отображения уведомлений:
   - `TimeOffset` - конфигурирует единичную выдачу уведомления с указанным временным сдвигом;
     - Артибут `Hours` содержит временной отступ в часах;
@@ -62,6 +63,8 @@
     <Source>https://calendar.yandex.ru/export/ics.xml?private_token=some_token&tz_id=your_place</Source>
 
     <Timers UpdateInterval="3600" ReminderInterval="60" />
+
+    <MaxLogsCount>50</MaxLogsCount>
 
     <NotificationTimeOffsetsList>
         <TimeOffset Hours="0" Minutes="-15" Seconds="0" />
@@ -81,6 +84,7 @@
     - Ровно в момент начала события (из тега `<TimeOffset Hours="0" Minutes="0" Seconds="0" />`)
     - За 5 (пять) минут до начала события (из тега `<TimeOffset Hours="0" Minutes="-5" Seconds="0" />`)
     - За 15 (пятнадцать) минут до начала события (из тега `<TimeOffset Hours="0" Minutes="-15" Seconds="0" />`)
+- Каждый раз добавляя запись в журлан логов, приложение будет проверять, не стало ли записей больше `50` (значение из тега `MaxLogsCount`), и, если стало, оно будет удалять старые записи, пока количество оставшихся не уложится в допустимые рамки (т.е. до `50`)
 
 # Где брать ссылку для тега `Source`
 
