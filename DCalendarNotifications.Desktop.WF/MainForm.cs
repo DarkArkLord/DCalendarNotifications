@@ -155,10 +155,10 @@ namespace DCalendarNotifications.Desctop.WF
                 }
 
                 var remindersCount = reminders.Count();
-                //if (remindersCount > 0)
-                //{
+                if (remindersCount > 0)
+                {
                     AddLog($"Отображено напоминаний: {reminders.Count()}.");
-                //}
+                }
             }
             catch (Exception ex)
             {
