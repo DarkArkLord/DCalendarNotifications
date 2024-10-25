@@ -26,7 +26,6 @@ namespace DCalendarNotifications.Desctop.WF
         public MainForm()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Minimized;
             ConfigureReminder();
         }
 
