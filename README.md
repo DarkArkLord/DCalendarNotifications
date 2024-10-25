@@ -1,1 +1,1 @@
-# DCalendarNotifications
+# DCalendarNotifications v1.0
