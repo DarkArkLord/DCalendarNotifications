@@ -62,7 +62,7 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void reminderTimer_Tick(object sender, EventArgs e)
         {
-            ReminderActivation();
+            ReminderActivation(false);
         }
 
         private void lbEvents_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -102,7 +102,7 @@ namespace DCalendarNotifications.Desctop.WF
 
         private void menuItem_showNotifications_Click(object sender, EventArgs e)
         {
-            ReminderActivation();
+            ReminderActivation(true);
         }
 
         #endregion
@@ -143,7 +143,7 @@ namespace DCalendarNotifications.Desctop.WF
             }
         }
 
-        private void ReminderActivation()
+        private void ReminderActivation(bool forceShowCount)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace DCalendarNotifications.Desctop.WF
                 }
 
                 var remindersCount = reminders.Count();
-                if (remindersCount > 0)
+                if (forceShowCount || remindersCount > 0)
                 {
                     AddLog($"Отображено напоминаний: {reminders.Count()}.");
                 }
@@ -182,7 +182,7 @@ namespace DCalendarNotifications.Desctop.WF
                 logs.SetMaxRecordsCount(config.MaxLogsCount);
 
                 await UpdateReminderContainer();
-                ReminderActivation();
+                ReminderActivation(false);
 
                 calendarUpdateTimer.Interval = (int)TimeSpan.FromSeconds(config.UpdateInterval).TotalMilliseconds;
                 calendarUpdateTimer.Start();
