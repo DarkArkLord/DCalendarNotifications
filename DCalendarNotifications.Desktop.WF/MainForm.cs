@@ -119,6 +119,7 @@ namespace DCalendarNotifications.Desctop.WF
 
         private async Task UpdateReminderContainer()
         {
+            AddLog("Обновление событий запущено.");
             try
             {
                 var day = await CalendarService.LoadDayByICalUriAsync(DateTime.Today, config.Source);
