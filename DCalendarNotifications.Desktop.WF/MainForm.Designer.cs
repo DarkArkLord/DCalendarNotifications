@@ -52,7 +52,7 @@
             // 
             trayIcon.ContextMenuStrip = trayIconMenuStrip;
             trayIcon.Icon = (System.Drawing.Icon)resources.GetObject("trayIcon.Icon");
-            trayIcon.Text = "trayIcon";
+            trayIcon.Text = "DCalendarNotifications";
             trayIcon.Visible = true;
             trayIcon.MouseClick += trayIcon_MouseClick;
             // 
