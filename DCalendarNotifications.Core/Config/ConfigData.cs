@@ -11,6 +11,11 @@ namespace DCalendarNotifications.Core.Config
         public Uri Source { get; set; }
 
         /// <summary>
+        /// Максимальное количество запросов для обновления данных
+        /// </summary>
+        public int RequestsTriesCount { get; set; }
+
+        /// <summary>
         /// Интервал обновления данных в ссекундах
         /// </summary>
         public int UpdateInterval { get; set; }

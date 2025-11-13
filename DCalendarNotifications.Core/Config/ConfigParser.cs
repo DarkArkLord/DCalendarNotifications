@@ -32,6 +32,7 @@ namespace DCalendarNotifications.Core.Config
             var config = new ConfigData();
 
             SetSourceValue(configNode, config);
+            SetRequestsValue(configNode, config);
             SetIntervalsValues(configNode, config);
             SetMaxLogsCountValue(configNode, config);
             SetNotificationOffsetsValues(configNode, config);
@@ -81,6 +82,38 @@ namespace DCalendarNotifications.Core.Config
             }
         }
 
+        // Установка параметров запроса 
+        private static void SetRequestsValue(XElement configNode, ConfigData config)
+        {
+            var requestsElement = configNode.Element("Requests");
+            if (requestsElement is null)
+            {
+                throw new Exception($"Секция \"Requests\" не обнаружена.");
+            }
+
+            var requestsTriesCountString = requestsElement.Attribute("RequestsTriesCount")?.Value?.Trim();
+            if (string.IsNullOrEmpty(requestsTriesCountString))
+            {
+                throw new Exception($"Атрибут \"RequestsTriesCount\" секции \"Requests\" не заполнен.");
+            }
+
+            if (int.TryParse(requestsTriesCountString, out int requestsTriesCount))
+            {
+                if (requestsTriesCount > 0)
+                {
+                    config.RequestsTriesCount = requestsTriesCount;
+                }
+                else
+                {
+                    throw new Exception($"Атрибут \"RequestsTriesCount\" секции \"Requests\" должен быть натуральным числом ({requestsTriesCountString}).");
+                }
+            }
+            else
+            {
+                throw new Exception($"Атрибут \"RequestsTriesCount\" секции \"Requests\" не может быть преобразован в число ({requestsTriesCountString}).");
+            }
+        }
+
         // Установка полей интервалов
         private static void SetIntervalsValues(XElement configNode, ConfigData config)
         {
@@ -100,7 +133,7 @@ namespace DCalendarNotifications.Core.Config
             var updateIntervalString = timersNode.Attribute("UpdateInterval")?.Value?.Trim();
             if (string.IsNullOrEmpty(updateIntervalString))
             {
-                throw new Exception($"Атрибут \"UpdateInterval\" секции \"Timers\" не заполнена.");
+                throw new Exception($"Атрибут \"UpdateInterval\" секции \"Timers\" не заполнен.");
             }
 
             if (int.TryParse(updateIntervalString, out int updateInterval))

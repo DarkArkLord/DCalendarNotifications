@@ -2,6 +2,8 @@
 <Config>
     <Source>https://calendar.yandex.ru/export/ics.xml?private_token=some_token&tz_id=your_place</Source>
 
+    <Requests RequestsTriesCount="3" />
+    
     <Timers UpdateInterval="3600" ReminderInterval="60" />
 
     <MaxLogsCount>50</MaxLogsCount>

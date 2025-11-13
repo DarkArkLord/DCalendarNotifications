@@ -120,27 +120,41 @@ namespace DCalendarNotifications.Desctop.WF
         private async Task UpdateReminderContainer()
         {
             AddLog("Обновление событий запущено.");
-            try
-            {
-                var day = await CalendarService.LoadDayByICalUriAsync(DateTime.Today, config.Source);
-                lock (_lock)
-                {
-                    try
-                    {
-                        _reminderContainer.Update(day, config.NotificationOffsets);
-                    }
-                    catch (Exception ex)
-                    {
-                        AddLog(ex);
-                    }
 
-                    UpdateEventList(day);
-                    AddLog("События были успешно обновлены.");
+            bool isComplete = false;
+            for (int requestIndex = 1; requestIndex <= config.RequestsTriesCount && !isComplete; requestIndex++)
+            {
+                AddLog($"Запуск запроса {requestIndex}.");
+
+                try
+                {
+                    var day = await CalendarService.LoadDayByICalUriAsync(DateTime.Today, config.Source);
+                    lock (_lock)
+                    {
+                        try
+                        {
+                            _reminderContainer.Update(day, config.NotificationOffsets);
+                            UpdateEventList(day);
+
+                            AddLog("События были успешно обновлены.");
+
+                            isComplete = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            AddLog(ex);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AddLog(ex);
                 }
             }
-            catch (Exception ex)
+
+            if(!isComplete)
             {
-                AddLog(ex);
+                AddLog("События не были обновлены из-за ошибок.");
             }
         }
 
