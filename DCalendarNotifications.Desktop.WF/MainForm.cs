@@ -124,6 +124,8 @@ namespace DCalendarNotifications.Desctop.WF
             bool isComplete = false;
             for (int requestIndex = 1; requestIndex <= config.RequestsTriesCount && !isComplete; requestIndex++)
             {
+                await Task.Delay(TimeSpan.FromSeconds(config.RequestDelay));
+
                 AddLog($"Запуск запроса {requestIndex}.");
 
                 try
@@ -152,7 +154,7 @@ namespace DCalendarNotifications.Desctop.WF
                 }
             }
 
-            if(!isComplete)
+            if (!isComplete)
             {
                 AddLog("События не были обновлены из-за ошибок.");
             }

@@ -16,6 +16,11 @@ namespace DCalendarNotifications.Core.Config
         public int RequestsTriesCount { get; set; }
 
         /// <summary>
+        /// Задержка перед отправкой запроса
+        /// </summary>
+        public int RequestDelay { get; set; }
+
+        /// <summary>
         /// Интервал обновления данных в ссекундах
         /// </summary>
         public int UpdateInterval { get; set; }

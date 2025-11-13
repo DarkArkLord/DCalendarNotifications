@@ -91,6 +91,13 @@ namespace DCalendarNotifications.Core.Config
                 throw new Exception($"Секция \"Requests\" не обнаружена.");
             }
 
+            SetRequestsTriesCountValue(requestsElement, config);
+            SetRequestDelayValue(requestsElement, config);
+        }
+
+        // Установка количества запросов
+        private static void SetRequestsTriesCountValue(XElement requestsElement, ConfigData config)
+        {
             var requestsTriesCountString = requestsElement.Attribute("RequestsTriesCount")?.Value?.Trim();
             if (string.IsNullOrEmpty(requestsTriesCountString))
             {
@@ -111,6 +118,32 @@ namespace DCalendarNotifications.Core.Config
             else
             {
                 throw new Exception($"Атрибут \"RequestsTriesCount\" секции \"Requests\" не может быть преобразован в число ({requestsTriesCountString}).");
+            }
+        }
+
+        // Установка задержки запросов
+        private static void SetRequestDelayValue(XElement requestsElement, ConfigData config)
+        {
+            var requestDelayString = requestsElement.Attribute("RequestDelay")?.Value?.Trim();
+            if (string.IsNullOrEmpty(requestDelayString))
+            {
+                throw new Exception($"Атрибут \"RequestDelay\" секции \"Requests\" не заполнен.");
+            }
+
+            if (int.TryParse(requestDelayString, out int requestDelay))
+            {
+                if (requestDelay >= 0)
+                {
+                    config.RequestDelay = requestDelay;
+                }
+                else
+                {
+                    throw new Exception($"Атрибут \"RequestDelay\" секции \"Requests\" должен быть неотрицательным числом ({requestDelayString}).");
+                }
+            }
+            else
+            {
+                throw new Exception($"Атрибут \"RequestDelay\" секции \"Requests\" не может быть преобразован в число ({requestDelayString}).");
             }
         }
 
